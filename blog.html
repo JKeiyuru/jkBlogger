@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DevTales - Blog</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <nav class="navbar">
+        <div class="nav-content">
+            <a href="index.html" class="logo">DevTales</a>
+            <div class="nav-links">
+                <div class="search-container">
+                    <input type="text" id="searchInput" placeholder="Search posts...">
+                    <i class="search-icon">🔍</i>
+                </div>
+                <a href="https://github.com" class="github-link" target="_blank">GitHub</a>
+            </div>
+        </div>
+    </nav>
+
+    <main class="blog-page">
+        <header class="blog-header">
+            <h1>Our Blog</h1>
+            <p>Discover in-depth articles about development, design, and tech trends</p>
+        </header>
+
+        <section class="blog-filters">
+            <div class="filter-container">
+                <button class="filter-button active">All</button>
+                <button class="filter-button">React</button>
+                <button class="filter-button">CSS</button>
+                <button class="filter-button">JavaScript</button>
+            </div>
+        </section>
+
+        <!-- <section class="blog-grid"></section> -->
+        <main>
+            <div class="blog-grid">
+                <!-- Blog posts will be rendered here -->
+            </div>
+            <div class="pagination-container">
+                <!-- Pagination will be rendered here -->
+            </div>
+        </main>
+        
+        <div id="noResults" class="no-results hidden">
+            <i>🔍</i>
+            <p>No posts found matching your search.</p>
+        </div>
+    </main>
+
+    <div class="loading-animation">
+        <div class="spinner"></div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
