@@ -403,97 +403,29 @@ So there you have it - keyframes bring movement to the city, while media queries
     },
     {
         id: 3,
-        title: "Internet, Servers, and JS Fetch API",
-        excerpt: "Dive into the world of web development, starting from the basics of how the internet works, leading all the way to understanding the JavaScript Fetch API!",
+        title: "The Backbone of DevTales: CSS Grid and Flexbox",
+        excerpt: "In the city of DevTales, order and flexibility go hand-in-hand. Streets align, buildings rise in uniform rows, and spaces just let you breathe comfortably. How does everything fit so neatly, even as the city grows and adapts? The magic lies in two powerful forces shaping this urban landscape: CSS Grid and Flexbox.",
         category: "JavaScript",
         readTime: "5 min",
-        date: "2024-05-11",
-        image: "Assets/city1.jpg",
-        content: `Let us dive into the world of web development, starting from the basics of how the internet works, leading all the way to understanding the JavaScript Fetch API!
-
- 1. The Internet: The Big Playground
-Imagine the internet as a massive city with roads connecting different houses and buildings. These houses are servers, and the roads are the pathways for information to travel—what we call the internet. Now, when you visit a website (like going to a specific house in this city), you are requesting information from one of these servers, which are like libraries holding vast amounts of data.
-
-- Story: Think of a server as a huge library. When you enter the library, you ask the librarian for a specific book (let us say, the latest Harry Potter novel). The librarian then goes to the shelf, picks out the book, and hands it to you. Similarly, on the internet, when you type a URL into your browser, you are asking a server to fetch some data (like a webpage), and it hands it back to your browser, which then displays it.
-
- 2. Protocols: The Language of the Web
-The librarian and you need to speak the same language to understand each other, right? In the same way, computers on the internet need a set of rules to communicate, and that’s where protocols come in. The most common ones are:
-- HTTP (Hypertext Transfer Protocol): This is like the grammar and vocabulary that ensures the server (librarian) and the client (you) understand each other when asking for web pages.
-- HTTPS is a secure version of HTTP, where your communication is encrypted.
-
-- Story: Think of HTTP as sending a letter through the mail. You write down your request, the mail carrier delivers it, and you wait for the reply. HTTPS is like sending the letter in a super-secure, locked box that only the recipient can open.
-
- 3. What is a Server?
-A server is just a computer that is always connected to the internet and can handle requests from other computers (clients). When you ask for a webpage, the server responds with the data you need—HTML, CSS, JavaScript, or maybe even JSON.
-
-- Story: Imagine the server as a fast-food restaurant. You (the client) drive up and order a burger (a webpage). The restaurant prepares it and hands it back to you through the window. Servers work the same way—they 'cook' the data you are asking for and send it back over the internet.
-
- 4. Fetching Data: The JavaScript Fetch API
-Now that you know how the internet works, let's talk about the Fetch API. This is a tool that JavaScript provides to fetch (retrieve) information from servers. It's like sending a message to the server, saying, “Hey, I need some data,” and the server responds with the data you requested.
-
-- Syntax: 
-   javascript
-   fetch('https://api.example.com/data')
-     .then(response => response.json()) // Convert response to JSON
-     .then(data => console.log(data)) // Do something with the data
-     .catch(error => console.error('Error:', error)); // Handle any errors
-   
-
-In the code above:
-- You send a request to a URL (https://api.example.com/data).
-- The .then(response => response.json()) line converts the response into JSON (more on that next).
-- The next .then(data => console.log(data)) handles the data you’ve received and prints it to the console.
-- .catch(error => console.error('Error:', error)) is where you catch any errors, like if the server is down.
-
- 5. What is JSON?
-JSON (JavaScript Object Notation) is a format for storing and transferring data. It's like a grocery list in a very structured format. Here’s an example:
-   json
-   {
-     'name': 'John',
-     'age': 30,
-     'city': 'New York'
-   }
-   
-This JSON object contains key-value pairs (like a dictionary). JSON is easy for both humans and machines to read and write, which makes it great for communication between a client and a server.
-
-- Story: Picture JSON like a treasure map. It has all the information you need (key: 'location', value: 'X marks the spot') in a way that is easy to understand. You hand this map to the treasure hunter (the client), and they follow it to find the treasure (the data).
-
- 6. Putting It All Together
-Let's say you're building a weather app. The app needs to get weather data from a server, like 'What's the temperature in Nairobi right now?'
-
-1. Your app sends a request to a weather server (using the Fetch API).
-2. The server gets the request and responds with weather data in JSON format.
-3. Your app receives this data, reads it, and displays it on the screen for the user.
-
-- Story: Imagine you are running a restaurant that serves only one item: pizza. When a customer (the client) calls you to order (sending a request), you check your kitchen for ingredients (the server) and prepare the pizza (the data). You then deliver the pizza (the response) back to the customer. Fetching data works the same way!
-
- 7. Other Key Concepts
-- Promises: The Fetch API is built on something called Promises. A promise is like saying, 'I’ll get back to you when the data is ready.' So when you make a request with Fetch, it doesn’t block everything while waiting—it promises to get back to you when it has the data.
-
-- Async/Await: Instead of using .then(), you can use async/await to make your code look more like traditional step-by-step instructions. It’s like saying, 'Wait here while I get the data,' which is much easier to follow.
-
-   javascript
-   async function getData() {
-     try {
-       let response = await fetch('https://api.example.com/data');
-       let data = await response.json();
-       console.log(data);
-     } catch (error) {
-       console.error('Error:', error);
-     }
-   }
-   getData();
-   
-
- 8. Conclusion
-To sum it up:
-- The internet is a network connecting servers (libraries) to clients (you).
-- Servers respond to requests from clients.
-- Protocols like HTTP/HTTPS govern how data is exchanged.
-- Fetch API in JavaScript helps you retrieve data from servers.
-- JSON is a common format for exchanging data.
-  
-With this understanding, you'll be able to confidently use Fetch to build interactive web apps that communicate with servers like a pro!`,
+        date: "2024-07-11",
+        image: "Assets/city4.jpg",
+        content: `<b>CSS Grid: The Master Planner</b> </br>
+        Imagine CSS Grid as the city's master planner. Grid loves structure and has a vision for aligning every element to create a harmonious layout. It's the framework for skyscrapers, row houses, and sprawling plazas, laying down rules for where everything should go. Grid's superpower? It can divide the city's land (your webpage) into rows and columns, creating a layout that flows seamlessly on all screens. </br>
+        </br>Here's how CSS Grid works: think of it as a blueprint with carefully marked columns and rows, like a massive sheet of graph paper. You can assign any building (or element) a specific spot on this grid, or even let it stretch across multiple rows and columns. Need a header that spans the entire top row, a sidebar on the left, and a main content area in the middle? CSS Grid handles that effortlessly.</br>
+        Example Code: </br>
+        <img src="Assets/css-grid.png" alt="CSS Grid" class="content-image">
+        </br>In this layout, Grid lays out the city with zones for a header, sidebar, main content, and footer. Each area has its own designated space, giving a structured and well balanced look. And if you decide to reshape your layout later, the grid blueprint makes it easy to adjust without tearing down any buildings.</br>
+        <b>Flexbox: The Dynamic Architect</b></br>
+        </br>Now, let's introduce Flexbox, the architect of flexibility. Where Grid lays out the city's main framework, Flexbox takes over in the details—like how buildings align within a block or how the furniture inside a room fits together. Flexbox's job is to keep everything neat and responsive, adapting to whatever space is available. Its specialty is arranging elements in a row or column, making it perfect for things like navigation bars, image galleries, and button groups.</br>
+        Flexbox is like a city block that adapts as the space grows or shrinks. Need some buildings to take up more space and others to stay small? Flexbox can handle that with ease. Its flexibility lets it expand, shrink, or align elements precisely where they're needed. </br>
+        Example Code:</br>
+        <img src="Assets/ccss-flex.png" alt="CSS Flex" class="content-image">
+        In this example, Flexbox takes control of the navbar, keeping items spaced evenly while staying flexible across different screen sizes. If the space changes, Flexbox adjusts the elements dynamically, without breaking the layout.</br>
+        <b>Grid and Flexbox Working Together<./b> </br>
+        In <i>DevTales</i>, Grid and Flexbox are like city planners working with architects. Grid creates the foundation, dividing the space into rows and columns, while Flexbox refines the details, making sure elements within those sections stay adaptable. Let's say you use Grid to set up the main zones of your website - a header, sidebar, and main content area. Within the main content area, you can use Flexbox to create a row of articles that wrap nicely as the screen size changes.</br>
+        </br>By combining CSS Grid and Flexbox, you're designing a layout that's structured yet flexible, adapting smoothly as users step into your city from desktops, tablets, and phones. In DevTales, this duo brings harmony and adaptability, ensuring that every building has its place and every street flows seamlessly - no matter how much the city grows.</br>
+        </br><hr></br>
+        So now you've met the master planner and the architect of DevTales. Together, they lay the foundation for a city that's both structured and dynamic, giving you the power to create layouts as visionary as they are versatile.`,
     },
     // Add more sample posts...
 ];
