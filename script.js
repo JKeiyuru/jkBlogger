@@ -76,13 +76,16 @@ function toggleNoResults(show) {
 }
 
 // Add interactive animations
+// Fix the addInteractiveAnimations function
 function addInteractiveAnimations() {
     // Animate hero text on load
     const heroContent = document.querySelector('.hero-content');
-    setTimeout(() => {
-        heroContent.style.opacity = '1';
-        heroContent.style.transform = 'translateY(0)';
-    }, 300);
+    if (heroContent) {  // Add this check
+        setTimeout(() => {
+            heroContent.style.opacity = '1';
+            heroContent.style.transform = 'translateY(0)';
+        }, 300);
+    }
 
     // Animate cards on scroll
     const observerOptions = {
@@ -99,9 +102,12 @@ function addInteractiveAnimations() {
         });
     }, observerOptions);
 
-    document.querySelectorAll('.blog-card').forEach(card => {
-        cardObserver.observe(card);
-    });
+    const cards = document.querySelectorAll('.blog-card');
+    if (cards.length > 0) {  // Add this check
+        cards.forEach(card => {
+            cardObserver.observe(card);
+        });
+    }
 }
 
 // Handle search focus effects
@@ -225,6 +231,21 @@ function initializeInteractiveFeatures() {
     });
 }
 
+// Add these functions to your script.js
+function showLoadingAnimation() {
+    const loader = document.querySelector('.loader');
+    if (loader) {
+        loader.classList.remove('hidden');
+    }
+}
+
+function hideLoadingAnimation() {
+    const loader = document.querySelector('.loader');
+    if (loader) {
+        loader.classList.add('hidden');
+    }
+}
+
 // Call initialization when DOM is loaded
 document.addEventListener('DOMContentLoaded', () => {
     initializeInteractiveFeatures();
@@ -268,185 +289,117 @@ const blogPosts = [
         readTime: "5 min",
         date: "2024-05-11",
         image: "Assets/city1.jpg",
-        content: `Let us dive into the world of web development, starting from the basics of how the internet works, leading all the way to understanding the JavaScript Fetch API!
+        content: `Let us dive into the world of web development, starting from the basics of how the internet works, leading all the way to understanding the JavaScript Fetch API!</br>
 
- 1. The Internet: The Big Playground
+ 1. The Internet: The Big Playground</br>
 Imagine the internet as a massive city with roads connecting different houses and buildings. These houses are servers, and the roads are the pathways for information to travel—what we call the internet. Now, when you visit a website (like going to a specific house in this city), you are requesting information from one of these servers, which are like libraries holding vast amounts of data.
 
-- Story: Think of a server as a huge library. When you enter the library, you ask the librarian for a specific book (let us say, the latest Harry Potter novel). The librarian then goes to the shelf, picks out the book, and hands it to you. Similarly, on the internet, when you type a URL into your browser, you are asking a server to fetch some data (like a webpage), and it hands it back to your browser, which then displays it.
+</br> Story: Think of a server as a huge library. When you enter the library, you ask the librarian for a specific book (let us say, the latest Harry Potter novel). The librarian then goes to the shelf, picks out the book, and hands it to you. Similarly, on the internet, when you type a URL into your browser, you are asking a server to fetch some data (like a webpage), and it hands it back to your browser, which then displays it.
 
- 2. Protocols: The Language of the Web
+ </br>2. Protocols: The Language of the Web </br>
 The librarian and you need to speak the same language to understand each other, right? In the same way, computers on the internet need a set of rules to communicate, and that’s where protocols come in. The most common ones are:
-- HTTP (Hypertext Transfer Protocol): This is like the grammar and vocabulary that ensures the server (librarian) and the client (you) understand each other when asking for web pages.
-- HTTPS is a secure version of HTTP, where your communication is encrypted.
+</br> HTTP (Hypertext Transfer Protocol): This is like the grammar and vocabulary that ensures the server (librarian) and the client (you) understand each other when asking for web pages.
+</br>HTTPS is a secure version of HTTP, where your communication is encrypted.
 
-- Story: Think of HTTP as sending a letter through the mail. You write down your request, the mail carrier delivers it, and you wait for the reply. HTTPS is like sending the letter in a super-secure, locked box that only the recipient can open.
+</br>Story: Think of HTTP as sending a letter through the mail. You write down your request, the mail carrier delivers it, and you wait for the reply. HTTPS is like sending the letter in a super-secure, locked box that only the recipient can open.
 
- 3. What is a Server?
+ </br>3. What is a Server? </br>
 A server is just a computer that is always connected to the internet and can handle requests from other computers (clients). When you ask for a webpage, the server responds with the data you need—HTML, CSS, JavaScript, or maybe even JSON.
 
-- Story: Imagine the server as a fast-food restaurant. You (the client) drive up and order a burger (a webpage). The restaurant prepares it and hands it back to you through the window. Servers work the same way—they 'cook' the data you are asking for and send it back over the internet.
+</br>Story: Imagine the server as a fast-food restaurant. You (the client) drive up and order a burger (a webpage). The restaurant prepares it and hands it back to you through the window. Servers work the same way—they 'cook' the data you are asking for and send it back over the internet.
 
- 4. Fetching Data: The JavaScript Fetch API
+ </br>4. Fetching Data: The JavaScript Fetch API </br>
 Now that you know how the internet works, let's talk about the Fetch API. This is a tool that JavaScript provides to fetch (retrieve) information from servers. It's like sending a message to the server, saying, “Hey, I need some data,” and the server responds with the data you requested.
 
-- Syntax: 
-   javascript
-   fetch('https://api.example.com/data')
-     .then(response => response.json()) // Convert response to JSON
-     .then(data => console.log(data)) // Do something with the data
-     .catch(error => console.error('Error:', error)); // Handle any errors
-   
+</br>Syntax: 
 
-In the code above:
-- You send a request to a URL (https://api.example.com/data).
-- The .then(response => response.json()) line converts the response into JSON (more on that next).
-- The next .then(data => console.log(data)) handles the data you’ve received and prints it to the console.
-- .catch(error => console.error('Error:', error)) is where you catch any errors, like if the server is down.
+   <img src="Assets/fetch-api.png" alt="Fetch API" class="content-image">
 
- 5. What is JSON?
-JSON (JavaScript Object Notation) is a format for storing and transferring data. It's like a grocery list in a very structured format. Here’s an example:
+
+In the code above:</br>
+</br>You send a request to a URL (https://api.example.com/data).</br>
+</br>The .then(response => response.json()) line converts the response into JSON (more on that next).</br>
+</br>The next .then(data => console.log(data)) handles the data you've received and prints it to the console.</br>
+</br> .catch(error => console.error('Error:', error)) is where you catch any errors, like if the server is down.</br>
+
+ 5. What is JSON? </br>
+JSON (JavaScript Object Notation) is a format for storing and transferring data. It's like a grocery list in a very structured format. Here’s an example:</br>
    json
-   {
-     'name': 'John',
-     'age': 30,
-     'city': 'New York'
-   }
+   
+        <img src="Assets/json.png" alt="JSON" class="content-image">
    
 This JSON object contains key-value pairs (like a dictionary). JSON is easy for both humans and machines to read and write, which makes it great for communication between a client and a server.
 
-- Story: Picture JSON like a treasure map. It has all the information you need (key: 'location', value: 'X marks the spot') in a way that is easy to understand. You hand this map to the treasure hunter (the client), and they follow it to find the treasure (the data).
+</br> Story: Picture JSON like a treasure map. It has all the information you need (key: 'location', value: 'X marks the spot') in a way that is easy to understand. You hand this map to the treasure hunter (the client), and they follow it to find the treasure (the data).
 
- 6. Putting It All Together
-Let's say you’re building a weather app. The app needs to get weather data from a server, like 'What's the temperature in Nairobi right now?'
+ </br>6. Putting It All Together</br>
+Let's say you're building a weather app. The app needs to get weather data from a server, like 'What's the temperature in Nairobi right now?'
 
-1. Your app sends a request to a weather server (using the Fetch API).
-2. The server gets the request and responds with weather data in JSON format.
-3. Your app receives this data, reads it, and displays it on the screen for the user.
+</br>1. Your app sends a request to a weather server (using the Fetch API).
+</br>2. The server gets the request and responds with weather data in JSON format.
+</br>3. Your app receives this data, reads it, and displays it on the screen for the user.
 
-- Story: Imagine you are running a restaurant that serves only one item: pizza. When a customer (the client) calls you to order (sending a request), you check your kitchen for ingredients (the server) and prepare the pizza (the data). You then deliver the pizza (the response) back to the customer. Fetching data works the same way!
+</br>Story: Imagine you are running a restaurant that serves only one item: pizza. When a customer (the client) calls you to order (sending a request), you check your kitchen for ingredients (the server) and prepare the pizza (the data). You then deliver the pizza (the response) back to the customer. Fetching data works the same way!
 
- 7. Other Key Concepts
-- Promises: The Fetch API is built on something called Promises. A promise is like saying, 'I’ll get back to you when the data is ready.' So when you make a request with Fetch, it doesn’t block everything while waiting—it promises to get back to you when it has the data.
+ </br>7. Other Key Concepts
+</br> Promises: The Fetch API is built on something called Promises. A promise is like saying, 'I’ll get back to you when the data is ready.' So when you make a request with Fetch, it doesn’t block everything while waiting—it promises to get back to you when it has the data.
 
-- Async/Await: Instead of using .then(), you can use async/await to make your code look more like traditional step-by-step instructions. It’s like saying, 'Wait here while I get the data,' which is much easier to follow.
-
-   javascript
-   async function getData() {
-     try {
-       let response = await fetch('https://api.example.com/data');
-       let data = await response.json();
-       console.log(data);
-     } catch (error) {
-       console.error('Error:', error);
-     }
-   }
-   getData();
+</br> Async/Await: Instead of using .then(), you can use async/await to make your code look more like traditional step-by-step instructions. It’s like saying, 'Wait here while I get the data,' which is much easier to follow.
+    
+    <img src="Assets/async.png" alt="Async" class="content-image">
    
 
- 8. Conclusion
-To sum it up:
+ </br>8. Conclusion
+</br>
 - The internet is a network connecting servers (libraries) to clients (you).
-- Servers respond to requests from clients.
-- Protocols like HTTP/HTTPS govern how data is exchanged.
-- Fetch API in JavaScript helps you retrieve data from servers.
-- JSON is a common format for exchanging data.
+</br>- Servers respond to requests from clients.
+</br>- Protocols like HTTP/HTTPS govern how data is exchanged.
+</br>- Fetch API in JavaScript helps you retrieve data from servers.
+</br>- JSON is a common format for exchanging data.</br>
   
 With this understanding, you'll be able to confidently use Fetch to build interactive web apps that communicate with servers like a pro!`,
     },
     {
         id: 2,
-        title: "Internet, Servers, and JS Fetch API",
-        excerpt: "Dive into the world of web development, starting from the basics of how the internet works, leading all the way to understanding the JavaScript Fetch API!",
-        category: "JavaScript",
-        readTime: "5 min",
-        date: "2024-05-11",
-        image: "Assets/city1.jpg",
-        content: `Let us dive into the world of web development, starting from the basics of how the internet works, leading all the way to understanding the JavaScript Fetch API!
+        title: "The Rhythm of the City: A Story of CSS Keyframes and Media Queries",
+        excerpt: "Imagine the city of <b>DevTales</b> buzzing with life. It's got style, charm, and a pulse that moves to its own beat. But what gives it that <i>motion</i>, that <i>adaptability</i>? Enter CSS keyframes and media queries - the dynamic duo that keeps the city in sync, from dawn to dusk, no matter how big or small the screen.",
+        category: "CSS",
+        readTime: "3 min",
+        date: "2024-06-11",
+        image: "Assets/city2.jpg",
+        content: `
+Keyframes: The City's Dancers
 
- 1. The Internet: The Big Playground
-Imagine the internet as a massive city with roads connecting different houses and buildings. These houses are servers, and the roads are the pathways for information to travel—what we call the internet. Now, when you visit a website (like going to a specific house in this city), you are requesting information from one of these servers, which are like libraries holding vast amounts of data.
+Think of <b>keyframes</b> as the city's dancers. Every animated element in DevTales has its own rhythm and groove. Need a building to light up and flash like it's part of a futuristic cityscape? Keyframes handle it. Want your welcome sign to gently slide down like it's rolling out a red carpet? Keyframes have you covered.
 
-- Story: Think of a server as a huge library. When you enter the library, you ask the librarian for a specific book (let us say, the latest Harry Potter novel). The librarian then goes to the shelf, picks out the book, and hands it to you. Similarly, on the internet, when you type a URL into your browser, you are asking a server to fetch some data (like a webpage), and it hands it back to your browser, which then displays it.
+Here's how it works: keyframes break down an animation into key moments. Like choreography, each “keyframe” sets a milestone in an element's movement. For example, a simple animation might have two steps: 0% for where the element starts, and 100% for where it ends. But the more frames you add, the more complex and interesting the movement becomes.
 
- 2. Protocols: The Language of the Web
-The librarian and you need to speak the same language to understand each other, right? In the same way, computers on the internet need a set of rules to communicate, and that’s where protocols come in. The most common ones are:
-- HTTP (Hypertext Transfer Protocol): This is like the grammar and vocabulary that ensures the server (librarian) and the client (you) understand each other when asking for web pages.
-- HTTPS is a secure version of HTTP, where your communication is encrypted.
+Example Code:
+<img src="Assets/css-keyframes.png" alt="keyframes" class="content-image">
 
-- Story: Think of HTTP as sending a letter through the mail. You write down your request, the mail carrier delivers it, and you wait for the reply. HTTPS is like sending the letter in a super-secure, locked box that only the recipient can open.
+In this example, the city's lights pulse, growing a little bigger, then smaller - creating a rhythm that repeats. With '@keyframes', you set the vibe, tempo, and energy of any element, transforming static designs into dynamic, interactive visuals.
 
- 3. What is a Server?
-A server is just a computer that is always connected to the internet and can handle requests from other computers (clients). When you ask for a webpage, the server responds with the data you need—HTML, CSS, JavaScript, or maybe even JSON.
+</br>
+ Media Queries: The City's Shape-Shifters
 
-- Story: Imagine the server as a fast-food restaurant. You (the client) drive up and order a burger (a webpage). The restaurant prepares it and hands it back to you through the window. Servers work the same way—they 'cook' the data you are asking for and send it back over the internet.
+Now let's talk <b>media queries</b>, the city's shape-shifters. In the real world, buildings don't change based on who's looking at them - but in <em>DevTales</em>, they do! A website can look different depending on the screen it's viewed on, and media queries allow you to design a site that looks flawless on every device, from a big desktop to a tiny phone screen.
 
- 4. Fetching Data: The JavaScript Fetch API
-Now that you know how the internet works, let's talk about the Fetch API. This is a tool that JavaScript provides to fetch (retrieve) information from servers. It's like sending a message to the server, saying, “Hey, I need some data,” and the server responds with the data you requested.
+Think of media queries as the blueprint adjustments for the city's skyscrapers and cozy cafés. When the screen size changes, media queries adjust the layout so that each structure stays in proportion. If someone views <em>DevTales</em> on a mobile device, it might compact to fit, simplifying and reordering elements to make it easy to read on a smaller scale.
 
-- Syntax: 
-   javascript
-   fetch('https://api.example.com/data')
-     .then(response => response.json()) // Convert response to JSON
-     .then(data => console.log(data)) // Do something with the data
-     .catch(error => console.error('Error:', error)); // Handle any errors
-   
+Example Code:
+<img src="Assets/css-mediaqueries.png" alt="media queries" class="content-image">
 
-In the code above:
-- You send a request to a URL (https://api.example.com/data).
-- The .then(response => response.json()) line converts the response into JSON (more on that next).
-- The next .then(data => console.log(data)) handles the data you’ve received and prints it to the console.
-- .catch(error => console.error('Error:', error)) is where you catch any errors, like if the server is down.
+Here, the media query says, “Hey, if the screen width is 600px or less, let's shrink the welcome sign and turn off those pulsing city lights.” This adaptability ensures that no matter how someone steps into DevTales - through a laptop, tablet, or phone - they get an experience tailored just for them.
 
- 5. What is JSON?
-JSON (JavaScript Object Notation) is a format for storing and transferring data. It's like a grocery list in a very structured format. Here’s an example:
-   json
-   {
-     'name': 'John',
-     'age': 30,
-     'city': 'New York'
-   }
-   
-This JSON object contains key-value pairs (like a dictionary). JSON is easy for both humans and machines to read and write, which makes it great for communication between a client and a server.
+</br>
 
-- Story: Picture JSON like a treasure map. It has all the information you need (key: 'location', value: 'X marks the spot') in a way that is easy to understand. You hand this map to the treasure hunter (the client), and they follow it to find the treasure (the data).
+Keyframes and Media Queries Working Together
 
- 6. Putting It All Together
-Let's say you’re building a weather app. The app needs to get weather data from a server, like 'What's the temperature in Nairobi right now?'
+The real magic happens when keyframes and media queries work hand-in-hand. Keyframes create motion and animation, making the city lively and eye-catching. Media queries keep the city in check, adapting each element to the visitor's screen.
 
-1. Your app sends a request to a weather server (using the Fetch API).
-2. The server gets the request and responds with weather data in JSON format.
-3. Your app receives this data, reads it, and displays it on the screen for the user.
+Imagine a simple scenario: on desktops, a banner gracefully fades in and pulses. But when viewed on a phone, the banner stays static, providing a clean, minimalistic feel. All of this is done through a few lines of code that tell your elements when to dance and when to stay cool.
 
-- Story: Imagine you are running a restaurant that serves only one item: pizza. When a customer (the client) calls you to order (sending a request), you check your kitchen for ingredients (the server) and prepare the pizza (the data). You then deliver the pizza (the response) back to the customer. Fetching data works the same way!
-
- 7. Other Key Concepts
-- Promises: The Fetch API is built on something called Promises. A promise is like saying, 'I’ll get back to you when the data is ready.' So when you make a request with Fetch, it doesn’t block everything while waiting—it promises to get back to you when it has the data.
-
-- Async/Await: Instead of using .then(), you can use async/await to make your code look more like traditional step-by-step instructions. It’s like saying, 'Wait here while I get the data,' which is much easier to follow.
-
-   javascript
-   async function getData() {
-     try {
-       let response = await fetch('https://api.example.com/data');
-       let data = await response.json();
-       console.log(data);
-     } catch (error) {
-       console.error('Error:', error);
-     }
-   }
-   getData();
-   
-
- 8. Conclusion
-To sum it up:
-- The internet is a network connecting servers (libraries) to clients (you).
-- Servers respond to requests from clients.
-- Protocols like HTTP/HTTPS govern how data is exchanged.
-- Fetch API in JavaScript helps you retrieve data from servers.
-- JSON is a common format for exchanging data.
-  
-With this understanding, you'll be able to confidently use Fetch to build interactive web apps that communicate with servers like a pro!`,
+So there you have it - keyframes bring movement to the city, while media queries make sure it looks stunning from every angle. In DevTales, these tools are the architects of an adaptable, responsive experience. And now, with a bit of code, you can make your own city come to life!`,
     },
     {
         id: 3,
@@ -506,7 +459,7 @@ This JSON object contains key-value pairs (like a dictionary). JSON is easy for 
 - Story: Picture JSON like a treasure map. It has all the information you need (key: 'location', value: 'X marks the spot') in a way that is easy to understand. You hand this map to the treasure hunter (the client), and they follow it to find the treasure (the data).
 
  6. Putting It All Together
-Let's say you’re building a weather app. The app needs to get weather data from a server, like 'What's the temperature in Nairobi right now?'
+Let's say you're building a weather app. The app needs to get weather data from a server, like 'What's the temperature in Nairobi right now?'
 
 1. Your app sends a request to a weather server (using the Fetch API).
 2. The server gets the request and responds with weather data in JSON format.
@@ -582,7 +535,7 @@ class Pagination {
                     onclick="paginationInstance.previousPage() && renderBlogPosts()">
                     Previous
                 </button>
-                <span class="pagination-info">${this.currentPage} / ${this.totalPages}</span>
+                <span class="pagination-info">Page ${this.currentPage} of ${this.totalPages}</span>
                 <button class="pagination-btn" ${this.currentPage === this.totalPages ? 'disabled' : ''} 
                     onclick="paginationInstance.nextPage() && renderBlogPosts()">
                     Next
@@ -607,7 +560,7 @@ class PostModal {
                     <span>${post.readTime}</span>
                     <span>${post.date}</span>
                 </div>
-                <p>${post.content}</p>
+                <div class="post-content">${post.content}</div>
             </div>
         `;
 
@@ -621,28 +574,16 @@ class PostModal {
     }
 }
 
-// Sorting functionality
-const sortPosts = (posts, sortBy = 'date') => {
-    return [...posts].sort((a, b) => {
-        switch (sortBy) {
-            case 'date':
-                return new Date(b.date) - new Date(a.date);
-            case 'readTime':
-                return parseInt(a.readTime) - parseInt(b.readTime);
-            case 'title':
-                return a.title.localeCompare(b.title);
-            default:
-                return 0;
-        }
-    });
-};
 
-// Initialize pagination
+
+// Initialize pagination with blog posts
 let paginationInstance = new Pagination(blogPosts);
 
 // Render blog posts with all features
 function renderBlogPosts(posts = blogPosts) {
     const blogGrid = document.querySelector('.blog-grid');
+    if (!blogGrid) return; // Safety check
+
     const currentPosts = paginationInstance.getCurrentPageItems();
     
     blogGrid.innerHTML = currentPosts.map(post => `
@@ -657,7 +598,7 @@ function renderBlogPosts(posts = blogPosts) {
             </div>
             <div class="card-footer">
                 <span class="read-time">${post.readTime}</span>
-                <button class="read-more" onclick="PostModal.show(${post.content})">
+                <button class="read-more" onclick='PostModal.show(${JSON.stringify(post).replace(/'/g, "&apos;").replace(/"/g, "&quot;")})'>
                     Read More
                 </button>
             </div>
@@ -665,11 +606,15 @@ function renderBlogPosts(posts = blogPosts) {
     `).join('');
 
     // Add pagination controls
-    blogGrid.insertAdjacentHTML('afterend', paginationInstance.renderPaginationControls());
+    const paginationContainer = document.querySelector('.pagination-container');
+    if (paginationContainer) {
+        paginationContainer.innerHTML = paginationInstance.renderPaginationControls();
+    }
 }
 
-// Initialize all features
+// Initialize everything when DOM is loaded
 document.addEventListener('DOMContentLoaded', () => {
+    // Initialize blog posts
     renderBlogPosts();
     
     // Add sort controls
@@ -684,13 +629,31 @@ document.addEventListener('DOMContentLoaded', () => {
         </select>
     `;
     
-    document.querySelector('.filter-container').appendChild(sortControls);
+    const filterContainer = document.querySelector('.filter-container');
+    if (filterContainer) {
+        filterContainer.appendChild(sortControls);
+    }
 });
-
 // Handle sort change
 function handleSort(event) {
     const sortedPosts = sortPosts(blogPosts, event.target.value);
     paginationInstance = new Pagination(sortedPosts);
     renderBlogPosts(sortedPosts);
+}
+
+// Sorting functionality
+function sortPosts(posts, sortBy = 'date') {
+    return [...posts].sort((a, b) => {
+        switch (sortBy) {
+            case 'date':
+                return new Date(b.date) - new Date(a.date);
+            case 'readTime':
+                return parseInt(a.readTime) - parseInt(b.readTime);
+            case 'title':
+                return a.title.localeCompare(b.title);
+            default:
+                return 0;
+        }
+    });
 }
 

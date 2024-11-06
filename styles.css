@@ -302,10 +302,7 @@ body {
 .hero-content b{
     color: #e2e8f0;
 }
-.hero-content span{
-    font-size: 1.3rem;
-    color: var(--accent-color-light);
-}
+
 .cta-button,
 .secondary-button{
     padding: 0.5rem 1rem;
@@ -437,14 +434,16 @@ body {
     background: var(--card-bg);
     border-radius: 1rem;
     padding: 2rem;
-    max-width: 800px;
+    max-width: 1000px;
     width: 90%;
     max-height: 90vh;
     overflow-y: auto;
     position: relative;
     transform: translateY(20px);
     animation: modalSlideIn 0.3s ease forwards;
+   
 }
+
 
 .modal-close {
     position: absolute;
@@ -471,7 +470,7 @@ body {
 .modal-content img {
     width: 100%;
     height: 300px;
-    object-fit: cover;
+    object-fit: contain;
     border-radius: 0.5rem;
     margin-bottom: 1.5rem;
 }
@@ -486,6 +485,14 @@ body {
     gap: 1rem;
     color: var(--text-secondary);
     margin-bottom: 1.5rem;
+}
+
+.content-image {
+    width: auto;
+    height: auto;
+    margin: 4% auto;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
 }
 
 /* Pagination styles */
@@ -651,4 +658,30 @@ body {
     color: white;
     border-radius: 4px;
     cursor: pointer;
+}
+
+.loader {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 2rem;
+}
+
+.loader.hidden {
+    display: none;
+}
+
+.loading-spinner {
+    width: 50px;
+    height: 50px;
+    border: 5px solid #f3f3f3;
+    border-top: 5px solid #3498db;
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
 }

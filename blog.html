@@ -3,23 +3,24 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>DevTales - Blog</title>
+    <title>DevTales Blog</title>
     <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
 </head>
 <body>
-    <nav class="navbar">
-        <div class="nav-content">
-            <a href="index.html" class="logo">DevTales</a>
-            <div class="nav-links">
-                <div class="search-container">
-                    <input type="text" id="searchInput" placeholder="Search posts...">
-                    <i class="search-icon">🔍</i>
-                </div>
-                <a href="https://github.com" class="github-link" target="_blank">GitHub</a>
+    <nav class="nav-content">
+        <a href="index.html" class="logo">DevTales</a>
+        <div class="nav-links">
+            <div class="search-container">
+                <!-- Search input will be added dynamically -->
+                <input type="text" id="searchInput" placeholder="Search blogs...">
+
             </div>
+            <a href="https://github.com" class="github-link" target="_blank"><i class="fab fa-github"></i></a>
         </div>
     </nav>
 
+  
     <main class="blog-page">
         <header class="blog-header">
             <h1>Our Blog</h1>
@@ -28,28 +29,39 @@
 
         <section class="blog-filters">
             <div class="filter-container">
-                <button class="filter-button active">All</button>
-                <button class="filter-button">React</button>
-                <button class="filter-button">CSS</button>
-                <button class="filter-button">JavaScript</button>
+                <button class="filter-button active" data-category="all">All</button>
+                <button class="filter-button" data-category="React">React</button>
+                <button class="filter-button" data-category="CSS">CSS</button>
+                <button class="filter-button" data-category="JavaScript">JavaScript</button>
             </div>
         </section>
 
-        <!-- <section class="blog-grid"></section> -->
-        <main>
+        <section class="blog-content">
             <div class="blog-grid">
                 <!-- Blog posts will be rendered here -->
             </div>
             <div class="pagination-container">
-                <!-- Pagination will be rendered here -->
+                <!-- Pagination controls will be rendered here -->
             </div>
-        </main>
-        
+        </section>
+
         <div id="noResults" class="no-results hidden">
-            <i>🔍</i>
             <p>No posts found matching your search.</p>
         </div>
     </main>
+      <!-- In blog.html -->
+<main>
+    <!-- Add loader here, before your blog content -->
+    <div class="loader hidden">
+        <div class="loading-spinner"></div>
+        <p>Loading posts...</p>
+    </div>
+
+    <!-- Your existing blog content container -->
+    <div class="blog-grid">
+        <!-- Blog posts will be rendered here -->
+    </div>
+</main>
 
     <div class="loading-animation">
         <div class="spinner"></div>
